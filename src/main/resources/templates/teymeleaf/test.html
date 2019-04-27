@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8" />
+    <title>teymeleaf的基本操作</title>
+    <!-- <script  th:src="@{/static/js/test.js}"></script> -->
+</head>
+<body>
+<div>
+	用户姓名：<input th:id="${user.name}" th:name="${user.name}" th:value="${user.name}" />
+	<br/>
+	用户年龄：<input th:id="${user.age}" th:name="${user.age}" th:value="${user.age}" />
+	<br/>
+	用户生日：<input th:id="${user.birthday}" th:name="${user.birthday}" th:value="${#dates.format(user.birthday,'yyyy-MM-dd HH:mm:ss')}" />
+	<br/>
+</div>
+
+<br/>
+
+<div th:object="${user}">
+	用户姓名：<input th:id="*{name}" th:name="*{name}" th:value="*{name}" />
+	<br/>
+	用户年龄：<input th:id="*{age}" th:name="*{age}" th:value="*{age}" />
+	<br/>
+	用户生日：<input th:id="*{birthday}" th:name="*{birthday}" th:value="*{#dates.format(birthday,'yyyy-MM-dd HH:mm:ss')}" />
+	<br/>
+</div>
+	
+<br/>
+
+text和utext:<br/>
+<span th:text="${user.desc}">abc</span>	
+<br/>
+<span th:utext="${user.desc}">abc</span>	
+<br/>
+<br/>
+
+URL:<br/>
+<a href="" th:href="@{https://www.baidu.com}">百度</a>	
+<br/>
+
+
+<br/>
+<form th:action="@{/th/postfrom}" th:object="${user}" th:method="post">
+	<input type="text" th:field="*{name}" />
+	<input type="text" th:field="*{age}" />
+	<input type="submit" />
+</form>
+<br/>
+
+
+<br/>
+<div th:if="${user.age} == 18">十八岁的天空</div>
+<div th:if="${user.age} gt 18">大于18</div>
+<div th:if="${user.age} lt 18">小于18</div>
+<div th:if="${user.age} ge 18">大于等于18</div>
+<div th:if="${user.age} le 18">小于等于18</div>
+<br/>
+
+
+<br/>
+<select>
+	<option th:selected="${user.name eq 'lisi'}">lisi</option>
+	<option th:selected="${user.name eq 'zhangsan'}">zhangsan</option>
+	<option th:selected="${user.name eq 'wangwu'}">wangwu</option>
+</select>
+<br/>
+
+
+<br/>
+<table>
+	<thead>
+		<tr>
+			<th>姓名</th>
+			<th>年龄</th>
+			<th>提示</th>
+			<th>生日</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr th:each="person:${userList}">
+			<th th:text="${person.name}"></th>
+			<th th:text="${person.age}"></th>
+			<th th:text="${person.age gt 18}?你该退休了:你很年轻">18岁</th>
+			<th th:text="${#dates.format(person.birthday,'yyyy-MM-dd HH:mm:ss')}"></th>
+		</tr>
+	</tbody>
+</table>
+<br/>
+	
+	
+<br/>	
+<div th:switch="${user.name}">
+	<p th:case="'zhangsan'">张三</p>
+	<p th:case="#{roles.manager}">管理员</p>
+	<p th:case="#{roles.supermanager}">超级管理员</p>
+	<p th:case="*">其他用户</p>
+</div>
+
+	
+</body>
+</html>
