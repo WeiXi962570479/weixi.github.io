@@ -18,4 +18,6 @@ public interface SysUserService {
 	
 	public List<SysUser> querySysUserPageList(SysUser sysUser,Integer pageNum,Integer pageSize);
 
+	public List<SysUser> queryCustomList(String userId);
+	
 }

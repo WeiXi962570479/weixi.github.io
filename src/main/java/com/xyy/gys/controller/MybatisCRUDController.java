@@ -89,7 +89,11 @@ public class MybatisCRUDController {
 		return ImoocJSONResult.ok(userList);
 	}
 	
-	
+	@RequestMapping("/custom")
+	public ImoocJSONResult queryCustomSysUser(String id) {
+		List<SysUser> list = userService.queryCustomList(id);
+		return ImoocJSONResult.ok(list);
+	}
 	
 	
 }
