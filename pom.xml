@@ -36,7 +36,7 @@
 			<!-- optional=true,依赖不会传递，该项目依赖devtools;之后依赖boot项目的项目要使用devtools,需要重新引入 -->
 			<optional>true</optional>
 		</dependency>
-		<!-- 支持读取properties文件,不要好像也可以-->
+		<!-- 支持读取properties文件-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-configuration-processor</artifactId>
